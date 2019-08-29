@@ -1,0 +1,18 @@
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #a08bd8;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header nav li {
+  display: inline;
+  padding: 0px 2rem;
+}
+/*# sourceMappingURL=main.css.map */
