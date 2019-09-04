@@ -15,4 +15,97 @@ header nav li {
   display: inline;
   padding: 0px 2rem;
 }
+
+body {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card {
+  background: #020024;
+  background: -webkit-gradient(linear, left bottom, left top, from(#020024), color-stop(0%, #005ed8), to(#33d3f8));
+  background: linear-gradient(0deg, #020024 0%, #005ed8 0%, #33d3f8 100%);
+  max-width: 600px;
+  min-width: 320px;
+  padding: 4rem;
+  border-radius: .8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 10px 9px 26px -7px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 9px 26px -7px rgba(0, 0, 0, 0.15);
+}
+
+.card h1, .card h4 {
+  margin: 0;
+}
+
+.card img {
+  width: 300px;
+}
+
+.card .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.card .card-header .temperture {
+  color: #fff;
+}
+
+.card .card-header .temperture h1 {
+  font-size: 7rem;
+}
+
+.card .card-header .temperture h1::after {
+  content: "\2109";
+}
+
+.card .card-header .temperture > span {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.card .card-header .temperture span:nth-last-child(2)::after {
+  content: "\2109";
+}
+
+.card .card-header .temperture .location {
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 2.5rem;
+  padding: .9rem;
+  border-radius: 0.8rem;
+  font-size: 1.7rem;
+}
+
+.card .card-header .temperture .location span {
+  margin-left: .7rem;
+}
+
+.card .card-header .weather-logo {
+  margin-left: 4rem;
+}
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,67 @@
+.card{  
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,94,216,1) 0%, rgba(51,211,248,1) 100%);
+    max-width:600px;
+    min-width: 320px;
+    padding: 4rem;
+    border-radius: .8rem;
+    h1,h4{
+        margin: 0;
+       
+    }
+
+    img{
+        width: 300px;
+
+    }
+    display: flex;
+    .card-header{
+        display: flex;
+        flex: 1;
+        justify-content: space-evenly;
+        .temperture{
+            color: $white;
+            h1{               
+                font-size:7rem;           
+            }
+            h1::after{
+                content: "\2109";
+            }
+            > span{
+                font-size:2.5rem;  
+                color: $white-faded;
+            }
+            span:nth-last-child(2)::after{
+                content: "\2109";
+            }
+            .location{
+             
+             background-color: $white-faded;
+             margin-top: 2.5rem;
+             padding: .9rem;
+             border-radius: 0.8rem;
+             font-size: 1.7rem;
+             span{
+                 margin-left:.7rem; 
+             }
+             
+
+            }
+          
+        }
+      
+        .weather-logo{
+            margin-left: 4rem;
+        }
+       
+        
+
+
+    }
+  
+  
+
+
+
+    box-shadow: 10px 9px 26px -7px rgba(0,0,0,0.15);
+}
