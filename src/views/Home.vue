@@ -1,6 +1,8 @@
 <template>
   <div class="main-content">
-    <Card />
+    <div class="container">
+      <Card />
+    </div>
   </div>
 </template>
 

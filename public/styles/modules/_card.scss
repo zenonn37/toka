@@ -1,14 +1,16 @@
 .card{  
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,94,216,1) 0%, rgba(51,211,248,1) 100%);
-    max-width:600px;
+   
     min-width: 320px;
-    padding: 3rem;
+    padding: 7rem 3rem;
     border-radius: .8rem;
     box-shadow: 10px 9px 26px -7px rgba(0,0,0,0.15);
     min-height:750px;
     display: flex;
     flex-direction: column;
+    margin-top:10rem; 
+    margin-bottom: 20rem;
     h1,h4{
         margin: 0;
        
@@ -66,7 +68,7 @@
 
     .day{
       display: flex;
-      flex: 1;
+      flex: 0 0 8.5em;
       > .report{
             display: flex;
             flex-direction: column;  
@@ -95,6 +97,49 @@
  
         
          
+      }
+
+      .daily{
+          display: flex;
+          flex-direction: column;
+          flex: 1;        
+          font-size:24px;  
+          img{
+              width: 40px;
+          }
+          .day-line{
+              flex:1;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 1rem;
+              .week-day{
+                  flex: 2;
+                  color: $white;
+              }
+              .image{
+                  padding-right:2.0rem;
+              }
+              .temp-range{
+                span:nth-child(1){
+                  color: $white;
+                  &::after{
+                      content: $degree;
+                  }
+                }
+                span:nth-child(2){
+                    color: $white;
+                }
+                span:nth-child(3){
+                    color: $white-faded;
+                    &::after{
+                        content: $degree;
+                    }
+                }
+              }
+              
+          }
+
       }
      
     }

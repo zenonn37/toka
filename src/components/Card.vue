@@ -84,6 +84,89 @@
     </div>
 
     <!--card body-->
+    <div class="daily">
+      <ul>
+        <li>
+          <div class="day-line">
+            <div class="week-day">Sunday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Monday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Tuesday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Wednesday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Thursday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Friday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+          <div class="day-line">
+            <div class="week-day">Saturday</div>
+            <div class="image">
+              <img src="../assets/sun_rain.png" alt="sun with rain" />
+            </div>
+            <div class="temp-range">
+              <span>65</span>
+              <span>/</span>
+              <span>50</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
