@@ -3,8 +3,12 @@
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,94,216,1) 0%, rgba(51,211,248,1) 100%);
     max-width:600px;
     min-width: 320px;
-    padding: 4rem;
+    padding: 3rem;
     border-radius: .8rem;
+    box-shadow: 10px 9px 26px -7px rgba(0,0,0,0.15);
+    min-height:750px;
+    display: flex;
+    flex-direction: column;
     h1,h4{
         margin: 0;
        
@@ -14,10 +18,10 @@
         width: 300px;
 
     }
-    display: flex;
+  
     .card-header{
         display: flex;
-        flex: 1;
+        flex: 0 0 21rem;
         justify-content: space-evenly;
         .temperture{
             color: $white;
@@ -25,15 +29,16 @@
                 font-size:7rem;           
             }
             h1::after{
-                content: "\2109";
+                content: $degree;
             }
             > span{
                 font-size:2.5rem;  
                 color: $white-faded;
             }
             span:nth-last-child(2)::after{
-                content: "\2109";
+                content: $degree;
             }
+            
             .location{
              
              background-color: $white-faded;
@@ -58,10 +63,44 @@
 
 
     }
+
+    .day{
+      display: flex;
+      flex: 1;
+      > .report{
+            display: flex;
+            flex-direction: column;  
+            .current, .time{
+                text-align: center;
+                margin-top: 0.5rem;               
+            }
+            .current{
+                color: $white;
+                font-size: 1.1rem;
+                span::after{
+                    content: $degree;
+                }
+             }   
+             .time{
+                 color: $white-faded;
+             }
+            
+          
+            img{
+                width: 70%;
+            }          
+         }
+     
+    
+ 
+        
+         
+      }
+     
+    }
   
   
 
 
 
-    box-shadow: 10px 9px 26px -7px rgba(0,0,0,0.15);
-}
+   

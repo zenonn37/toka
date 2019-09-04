@@ -16,6 +16,72 @@
       </div>
     </div>
     <!--card day-->
+    <div class="day">
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>55</span>
+        </div>
+        <div class="time">12AM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>50</span>
+        </div>
+        <div class="time">3AM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>48</span>
+        </div>
+        <div class="time">6AM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>55</span>
+        </div>
+        <div class="time">9AM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>75</span>
+        </div>
+        <div class="time">12PM</div>
+      </div>
+
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>77</span>
+        </div>
+        <div class="time">3PM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>70</span>
+        </div>
+        <div class="time">6PM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>68</span>
+        </div>
+        <div class="time">9PM</div>
+      </div>
+      <div class="report">
+        <img src="../assets/sun_rain.png" alt="sun with rain" />
+        <div class="current">
+          <span>60</span>
+        </div>
+        <div class="time">12AM</div>
+      </div>
+    </div>
 
     <!--card body-->
   </div>
