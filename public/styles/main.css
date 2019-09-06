@@ -22,6 +22,19 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+}
+
 .main-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,7 +53,7 @@ body {
 
 .container {
   max-width: 700px;
-  margin: 0 auto auto auto;
+  margin: 0 auto;
 }
 
 ul {
@@ -48,11 +61,16 @@ ul {
   list-style: none;
 }
 
+.input {
+  height: 50px;
+  width: 70%;
+  border-radius: 10px;
+}
+
 .card {
   background: #020024;
   background: -webkit-gradient(linear, left bottom, left top, from(#020024), color-stop(0%, #005ed8), to(#33d3f8));
   background: linear-gradient(0deg, #020024 0%, #005ed8 0%, #33d3f8 100%);
-  min-width: 320px;
   padding: 7rem 3rem;
   border-radius: .8rem;
   -webkit-box-shadow: 10px 9px 26px -7px rgba(0, 0, 0, 0.15);
@@ -74,7 +92,7 @@ ul {
 }
 
 .card img {
-  width: 300px;
+  width: 80%;
 }
 
 .card .card-header {
@@ -113,9 +131,17 @@ ul {
 .card .card-header .temperture .location {
   background-color: rgba(255, 255, 255, 0.5);
   margin-top: 2.5rem;
-  padding: .9rem;
+  padding: 1.0rem .5rem;
   border-radius: 0.8rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.card .card-header .temperture .location:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  font-size: 1.0rem;
 }
 
 .card .card-header .temperture .location span {
