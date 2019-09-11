@@ -4,7 +4,10 @@ import router from './router'
 import store from './store/store'
 import VModal from 'vue-js-modal'
 
+import "./filters/filter";
+
 Vue.use(VModal);
+
 
 
 Vue.config.productionTip = false

@@ -17,74 +17,21 @@
             </div>
           </div>
           <div class="weather-logo">
-            <img :src="`images/${visual}.png`" alt="Weather Logo" />
+            <img :src="`images/${visual}.png`" :alt="`${visual}`" />
           </div>
         </div>
+
         <!--card day-->
         <div class="day">
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
+          <div class="report" v-for="forcast in forcasts.slice(1,7)" :key="forcast.dt_text">
+            <img
+              :src="`http://openweathermap.org/img/wn/${forcast.weather[0].icon}@2x.png`"
+              :alt="`${forcast.weather[0].description}`"
+            />
             <div class="current">
-              <span>55</span>
+              <span>{{forcast.main.temp | numWHOLE}}</span>
             </div>
-            <div class="time">12AM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>50</span>
-            </div>
-            <div class="time">3AM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>48</span>
-            </div>
-            <div class="time">6AM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>55</span>
-            </div>
-            <div class="time">9AM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>75</span>
-            </div>
-            <div class="time">12PM</div>
-          </div>
-
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>77</span>
-            </div>
-            <div class="time">3PM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>70</span>
-            </div>
-            <div class="time">6PM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>68</span>
-            </div>
-            <div class="time">9PM</div>
-          </div>
-          <div class="report">
-            <img src="../assets/sun_rain.png" alt="sun with rain" />
-            <div class="current">
-              <span>60</span>
-            </div>
-            <div class="time">12AM</div>
+            <div class="time">{{forcast.dt_txt | time}}</div>
           </div>
         </div>
 
@@ -92,81 +39,18 @@
         <div class="daily">
           <ul>
             <li>
-              <div class="day-line">
-                <div class="week-day">Sunday</div>
+              <div class="day-line" v-for="forcast in days" :key="forcast.dt_text">
+                <div class="week-day">{{forcast.dt_txt | day}}</div>
                 <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
+                  <img
+                    :src="`http://openweathermap.org/img/wn/${forcast.weather[0].icon}@2x.png`"
+                    :alt="`${forcast.weather[0].description}`"
+                  />
                 </div>
                 <div class="temp-range">
-                  <span>65</span>
+                  <span>{{forcast.main.temp_max | numWHOLE }}</span>
                   <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Monday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Tuesday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Wednesday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Thursday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Friday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
-                </div>
-              </div>
-              <div class="day-line">
-                <div class="week-day">Saturday</div>
-                <div class="image">
-                  <img src="../assets/sun_rain.png" alt="sun with rain" />
-                </div>
-                <div class="temp-range">
-                  <span>65</span>
-                  <span>/</span>
-                  <span>50</span>
+                  <span>{{forcast.main.temp_min | numWHOLE }}</span>
                 </div>
               </div>
             </li>
@@ -194,27 +78,73 @@ export default {
     weather() {
       return this.$store.getters.GET_DATA;
     },
+    forcasts() {
+      const list = this.$store.getters.GET_DAY.list;
+      return list;
+    },
+    days() {
+      const list = this.$store.getters.GET_DAY.list;
+
+      const arr = list.filter((element, index) => {
+        return index % 7 == 0;
+      });
+
+      console.log(arr);
+
+      return arr;
+    },
     visual() {
       const detail = this.$store.getters.GET_DATA.weather[0];
 
-      switch (detail.main) {
-        case "Clouds":
-          console.log("clounds");
+      switch (detail.description) {
+        case "few clouds":
+          console.log("few clouds");
           return "part_sun";
 
-          break;
-        case "Clear":
+        case "clear sky":
           console.log("clear sky");
-          return "sun";
-          break;
+          return "icon_clear_sky_day";
+
+        case "scattered clouds":
+          console.log("scattered clouds");
+          return "scat";
+
+        case "broken clouds":
+          console.log("broken clouds");
+          return "broken";
+
+        case "shower rain":
+          console.log("shower rain");
+          return "rain_sun";
+
+        case "rain":
+          console.log("rain");
+          return "rain";
+
+        case "thunderstorm":
+          console.log("thunderstorm");
+          return "thunderstorm";
+
+        case "snow":
+          console.log("snow");
+          return "icon_snow";
+
+        case "mist":
+          console.log("mist");
+          return "icon_mist";
 
         default:
+          return "Issue";
           break;
       }
     },
     local() {
       const temp = numeral(this.$store.getters.GET_DATA.main.temp).format(0.0);
       return temp;
+    },
+    counter() {
+      let num = 0;
+      return (num = num + 5);
     },
     max() {
       const temp = numeral(this.$store.getters.GET_DATA.main.temp_max).format(
@@ -246,6 +176,10 @@ export default {
       this.loaded = false;
       console.log("loaded");
     });
+
+    // this.$store.dispatch("FORCAST").then(() => {
+    //   console.log("forcast");
+    // });
   }
 };
 </script>
