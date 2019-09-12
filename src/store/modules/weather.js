@@ -106,6 +106,20 @@ const actions = {
             })
                 .then(res => {
                     console.log(res.data);
+                    axios.get('http://apps.test/api/forecast', {
+                        params: {
+                            city: city
+                        }
+                    }).then(res => {
+
+                        commit('SET_DAY', res.data)
+                        //resolve(res);
+
+                    }).catch(err => {
+                        console.log(err);
+                        // reject(err);
+
+                    })
 
                     resolve(res);
                     commit("SET_DATA", res.data)

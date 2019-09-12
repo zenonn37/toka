@@ -22,14 +22,15 @@ export default {
     onSubmit() {
       console.log(this.city);
       this.$store
-        .dispatch("CURRENT_WEATHER", this.city)
+        .dispatch("GET_WEATHER", this.city)
         .then(() => {
-          this.$store
-            .dispatch("CURRENT_WEATHER")
-            .then(() => {
-              this.$modal.hide("hello-world");
-            })
-            .catch(err => {});
+          this.$modal.hide("hello-world");
+          // this.$store
+          //   .dispatch("GET_WEATHER")
+          //   .then(() => {
+          //     this.$modal.hide("hello-world");
+          //   })
+          //   .catch(err => {});
         })
         .catch(() => {});
     }

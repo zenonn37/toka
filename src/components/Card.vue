@@ -49,8 +49,8 @@
                 </div>
                 <div class="temp-range">
                   <span>{{forcast.main.temp_max | numWHOLE }}</span>
-                  <span>/</span>
-                  <span>{{forcast.main.temp_min | numWHOLE }}</span>
+                  <!-- <span>/</span> -->
+                  <!-- <span>{{forcast.main.temp_min | numWHOLE }}</span> -->
                 </div>
               </div>
             </li>
