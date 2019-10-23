@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/store'
 import VModal from 'vue-js-modal'
+import './plugins/vue-skycons'
 
 import "./filters/filter";
 

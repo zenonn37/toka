@@ -5,7 +5,25 @@
       <template v-if="loaded">loading..</template>
 
       <template v-else>
-        <div class="card-header">
+        <div>{{current}}</div>
+        <div class="icons">
+          <skycon condition="clear-day" />
+
+          <skycon condition="clear-night" />
+          <skycon condition="partly-cloudy-day" />
+          <skycon condition="partly-cloudy-night" />
+          <skycon condition="cloudy" />
+          <skycon condition="rain" />
+          <skycon condition="sleet" />
+          <skycon condition="snow" />
+          <skycon condition="wind" />
+          <skycon condition="fog" />
+        </div>
+        <div>
+          <li v-for="d in daily" :key="d.time">{{d.summary}}</li>
+        </div>
+
+        <!-- <div class="card-header">
           <div class="temperture">
             <h1 class="temp">{{ local}}</h1>
             <span>{{max}}/</span>
@@ -19,10 +37,10 @@
           <div class="weather-logo">
             <img :src="`images/${visual}.png`" :alt="`${visual}`" />
           </div>
-        </div>
+        </div>-->
 
         <!--card day-->
-        <div class="day">
+        <!-- <div class="day">
           <div class="report" v-for="forcast in forcasts.slice(1,7)" :key="forcast.dt_text">
             <img
               :src="`http://openweathermap.org/img/wn/${forcast.weather[0].icon}@2x.png`"
@@ -33,10 +51,11 @@
             </div>
             <div class="time">{{forcast.dt_txt | time}}</div>
           </div>
-        </div>
+        </div>-->
 
         <!--card body-->
-        <div class="daily">
+
+        <!-- <div class="daily">
           <ul>
             <li>
               <div class="day-line" v-for="forcast in days" :key="forcast.dt_text">
@@ -49,22 +68,21 @@
                 </div>
                 <div class="temp-range">
                   <span>{{forcast.main.temp_max | numWHOLE }}</span>
-                  <!-- <span>/</span> -->
-                  <!-- <span>{{forcast.main.temp_min | numWHOLE }}</span> -->
+              
                 </div>
               </div>
             </li>
           </ul>
-        </div>
+        </div>-->
       </template>
     </div>
-    <Modal />
   </div>
 </template>
 
 <script>
 import numeral from "numeral";
 import Modal from "@/components/Modal";
+
 export default {
   components: {
     Modal
@@ -75,93 +93,87 @@ export default {
     };
   },
   computed: {
-    weather() {
-      return this.$store.getters.GET_DATA;
+    current() {
+      return this.$store.getters.get_current;
     },
-    forcasts() {
-      const list = this.$store.getters.GET_DAY.list;
-      return list;
+    daily() {
+      return this.$store.getters.get_daily;
     },
-    days() {
-      const list = this.$store.getters.GET_DAY.list;
-
-      const arr = list.filter((element, index) => {
-        return index % 7 == 0;
-      });
-
-      console.log(arr);
-
-      return arr;
-    },
-    visual() {
-      const detail = this.$store.getters.GET_DATA.weather[0];
-
-      switch (detail.description) {
-        case "few clouds":
-          console.log("few clouds");
-          return "part_sun";
-
-        case "clear sky":
-          console.log("clear sky");
-          return "icon_clear_sky_day";
-
-        case "scattered clouds":
-          console.log("scattered clouds");
-          return "scat";
-
-        case "broken clouds":
-          console.log("broken clouds");
-          return "broken";
-
-        case "shower rain":
-          console.log("shower rain");
-          return "rain_sun";
-
-        case "rain":
-          console.log("rain");
-          return "rain";
-
-        case "thunderstorm":
-          console.log("thunderstorm");
-          return "thunderstorm";
-
-        case "snow":
-          console.log("snow");
-          return "icon_snow";
-
-        case "mist":
-          console.log("mist");
-          return "icon_mist";
-
-        default:
-          return "Issue";
-          break;
-      }
-    },
-    local() {
-      const temp = numeral(this.$store.getters.GET_DATA.main.temp).format(0.0);
-      return temp;
-    },
-    counter() {
-      let num = 0;
-      return (num = num + 5);
-    },
-    max() {
-      const temp = numeral(this.$store.getters.GET_DATA.main.temp_max).format(
-        0.0
-      );
-      return temp;
-    },
-    min() {
-      const temp = numeral(this.$store.getters.GET_DATA.main.temp_min).format(
-        0.0
-      );
-      return temp;
-    },
-    details() {
-      const detail = this.$store.getters.GET_DATA.weather[0].description;
-      return detail;
-    }
+    icons() {}
+    // weather() {
+    //   return this.$store.getters.GET_DATA;
+    // },
+    // forcasts() {
+    //   const list = this.$store.getters.GET_DAY.list;
+    //   return list;
+    // },
+    // days() {
+    //   const list = this.$store.getters.GET_DAY.list;
+    //   const arr = list.filter((element, index) => {
+    //     return index % 7 == 0;
+    //   });
+    //   console.log(arr);
+    //   return arr;
+    // },
+    // visual() {
+    //   const detail = this.$store.getters.GET_DATA.weather[0];
+    //   switch (detail.description) {
+    //     case "few clouds":
+    //       console.log("few clouds");
+    //       return "part_sun";
+    //     case "clear sky":
+    //       console.log("clear sky");
+    //       return "icon_clear_sky_day";
+    //     case "scattered clouds":
+    //       console.log("scattered clouds");
+    //       return "scat";
+    //     case "broken clouds":
+    //       console.log("broken clouds");
+    //       return "broken";
+    //     case "shower rain":
+    //       console.log("shower rain");
+    //       return "rain_sun";
+    //     case "rain":
+    //       console.log("rain");
+    //       return "rain";
+    //     case "thunderstorm":
+    //       console.log("thunderstorm");
+    //       return "thunderstorm";
+    //     case "snow":
+    //       console.log("snow");
+    //       return "icon_snow";
+    //     case "mist":
+    //       console.log("mist");
+    //       return "icon_mist";
+    //     default:
+    //       return "Issue";
+    //       break;
+    //   }
+    // },
+    // local() {
+    //   const temp = numeral(this.$store.getters.GET_DATA.main.temp).format(0.0);
+    //   return temp;
+    // },
+    // counter() {
+    //   let num = 0;
+    //   return (num = num + 5);
+    // },
+    // max() {
+    //   const temp = numeral(this.$store.getters.GET_DATA.main.temp_max).format(
+    //     0.0
+    //   );
+    //   return temp;
+    // },
+    // min() {
+    //   const temp = numeral(this.$store.getters.GET_DATA.main.temp_min).format(
+    //     0.0
+    //   );
+    //   return temp;
+    // },
+    // details() {
+    //   const detail = this.$store.getters.GET_DATA.weather[0].description;
+    //   return detail;
+    // }
   },
   methods: {
     onName() {
@@ -171,15 +183,14 @@ export default {
   },
 
   created() {
-    this.loaded = true;
-    this.$store.dispatch("CURRENT_WEATHER").then(() => {
-      this.loaded = false;
-      console.log("loaded");
-    });
-
-    // this.$store.dispatch("FORCAST").then(() => {
-    //   console.log("forcast");
+    // this.loaded = true;
+    // this.$store.dispatch("CURRENT_WEATHER").then(() => {
+    //   this.loaded = false;
+    //   console.log("loaded");
     // });
+    // // this.$store.dispatch("FORCAST").then(() => {
+    // //   console.log("forcast");
+    // // });
   }
 };
 </script>

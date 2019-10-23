@@ -2,32 +2,96 @@ import axios from 'axios';
 
 
 const state = {
-    data: [],
-    day: [],
+    current: [],
+    daily: [],
+    hourly: [],
+    minute: [],
+    meta: {},
+    city: "",
+
 
 }
 
 const mutations = {
-    SET_DATA(state, data) {
-        state.data = data;
+
+    set_current(state, payload) {
+        state.current = payload
     },
-    SET_DAY(state, day) {
-        state.day = day;
+    set_daily(state, payload) {
+        state.daily = payload
     },
+    set_hourly(state, payload) {
+        state.hourly = payload
+    },
+    set_minute(state, payload) {
+        state.minute = payload
+    },
+
+
+
+
+
+
+
+    set_meta(state, payload) {
+        state.meta = payload
+    }
 
 }
 
 const getters = {
-    GET_DATA(state) {
-        return state.data;
+
+
+    get_current(state) {
+        return state.current
     },
-    GET_DAY(state) {
-        return state.day;
+    get_daily(state) {
+        return state.daily
+    },
+    get_hourly(state) {
+        return state.hourly
+    },
+    get_minute(state) {
+        return state.minute
     }
 
 }
 
 const actions = {
+
+    SET_LOCATION({ commit }, location) {
+        return new Promise((resolve, reject) => {
+            axios.post('http://apps.test/api/geosky', location)
+                .then(res => {
+                    console.log(res.data.currently);
+                    console.log(res.data.daily);
+                    commit('set_current', res.data.currently)
+                    commit('set_daily', res.data.daily.data)
+                    commit('set_hourly', res.data.hourly.data)
+                    commit('set_minute', res.data.minutely.data)
+
+                    const meta = {
+                        lat: res.data.latitude,
+                        long: res.data.longitude,
+                        zone: res.data.timezone
+                    }
+                    commit('set_meta', meta)
+                    resolve(res)
+
+                }).catch(err => {
+                    console.log(err);
+                    reject(err)
+
+                })
+
+
+
+        })
+
+
+
+
+    },
 
     FORCAST({ commit }, city) {
         return new Promise((resolve, reject) => {
