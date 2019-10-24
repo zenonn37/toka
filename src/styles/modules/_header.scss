@@ -1,0 +1,56 @@
+header{
+    display: flex;
+    flex:1;
+    background-color: rgb(153, 221, 238);  
+    height: 400px; 
+    nav{
+        display: flex;
+        justify-content: flex-end;
+        margin-top:1rem;
+      
+    }
+     .weather{
+         display: flex;
+         justify-content: center;
+         margin-top: 90px;
+        .weather-header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            .city{
+               font-size: 30px;
+               margin-bottom:1rem;
+               font-weight: 700;
+            }
+            .temp-icon{
+                display: flex;
+                .temp{
+                  font-size:60px;
+                  font-weight: 300;
+                  &::after{
+                      content: "\2109";
+                  }
+                }
+                .weather-icon{
+                    img{
+                        width: 125px;
+                    }
+                }
+            }
+            .summary{
+                font-size: 25px;
+            }
+           
+           
+           
+              
+          }
+
+     }
+
+
+ 
+
+}

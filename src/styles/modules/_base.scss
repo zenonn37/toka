@@ -1,6 +1,6 @@
 body{
     height: 100vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 *,
 *:after,
@@ -16,13 +16,17 @@ html{
 .main-content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  
+}
+.child-content{
+    display: flex;
+    flex:1
 }
 
 .container{
-    max-width: 700px;
+    max-width: 1200px;
     margin: 0 auto;
+    width: 90%;
 }
 
 ul{

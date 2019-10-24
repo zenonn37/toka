@@ -1,25 +1,85 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Oxygen:300,700&display=swap");
 header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #a08bd8;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: #99ddee;
+  height: 400px;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+header .weather {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 90px;
+}
+
+header .weather .weather-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  width: 300px;
 }
 
-header nav li {
-  display: inline;
-  padding: 0px 2rem;
+header .weather .weather-header .city {
+  font-size: 30px;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+header .weather .weather-header .temp-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .weather .weather-header .temp-icon .temp {
+  font-size: 60px;
+  font-weight: 300;
+}
+
+header .weather .weather-header .temp-icon .temp::after {
+  content: "\2109";
+}
+
+header .weather .weather-header .temp-icon .weather-icon img {
+  width: 125px;
+}
+
+header .weather .weather-header .summary {
+  font-size: 25px;
 }
 
 body {
   height: 100vh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 *,
@@ -43,17 +103,21 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+.child-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .container {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
+  width: 90%;
 }
 
 ul {
@@ -65,6 +129,11 @@ ul {
   height: 50px;
   width: 70%;
   border-radius: 10px;
+}
+
+.icons {
+  width: 64px;
+  height: 64px;
 }
 
 .card {

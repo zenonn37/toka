@@ -2,11 +2,19 @@
   <div>
     <div class="card">
       <!--card header-->
-      <template v-if="loaded">loading..</template>
+      <template v-if="loaded">
+        <div class="loading-container">
+          <div class="loader">loading..</div>
+        </div>
+      </template>
 
       <template v-else>
-        <div>{{current}}</div>
-        <div class="icons">
+        <div class="large">
+          <div class="container"></div>
+          <div>{{current}}</div>
+        </div>
+
+        <!-- <div class="icons">
           <skycon condition="clear-day" />
 
           <skycon condition="clear-night" />
@@ -21,7 +29,7 @@
         </div>
         <div>
           <li v-for="d in daily" :key="d.time">{{d.summary}}</li>
-        </div>
+        </div>-->
 
         <!-- <div class="card-header">
           <div class="temperture">

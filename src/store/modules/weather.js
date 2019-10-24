@@ -7,7 +7,7 @@ const state = {
     hourly: [],
     minute: [],
     meta: {},
-    city: "",
+    city: {},
 
 
 }
@@ -26,6 +26,11 @@ const mutations = {
     set_minute(state, payload) {
         state.minute = payload
     },
+
+    set_city(state, payload) {
+        state.city = payload
+    },
+
 
 
 
@@ -53,16 +58,39 @@ const getters = {
     },
     get_minute(state) {
         return state.minute
+    },
+    get_city(state) {
+        return state.city
     }
 
 }
 
 const actions = {
 
-    SET_LOCATION({ commit }, location) {
+    get_city({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            axios.post('http://apps.test/api/city', data)
+                .then(res => {
+                    console.log(res.data);
+
+                    const data = {
+                        city: res.data[3].long_name,
+                        state: res.data[6].short_name
+                    }
+                    // const city = res.data[3].long_name
+                    // const state = res.data[5].long_name
+                    commit('set_city', data)
+                }).catch(err => {
+
+                })
+        })
+    },
+
+    SET_LOCATION({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
             axios.post('http://apps.test/api/geosky', location)
                 .then(res => {
+                    dispatch('get_city', location)
                     console.log(res.data.currently);
                     console.log(res.data.daily);
                     commit('set_current', res.data.currently)
@@ -93,16 +121,24 @@ const actions = {
 
     },
 
-    FORCAST({ commit }, city) {
+    get_current({ commit }, location) {
         return new Promise((resolve, reject) => {
 
-            axios.get('http://apps.test/api/forecast', {
-                params: {
-                    city: city !== '' ? 'New York' : city
-                }
-            }).then(res => {
+            axios.post('http://apps.test/api/dark', location
 
-                commit('SET_DAY', res.data)
+            ).then(res => {
+
+                commit('set_current', res.data.currently)
+                commit('set_daily', res.data.daily.data)
+                commit('set_hourly', res.data.hourly.data)
+                commit('set_minute', res.data.minutely.data)
+
+                const meta = {
+                    lat: res.data.latitude,
+                    long: res.data.longitude,
+                    zone: res.data.timezone
+                }
+                commit('set_meta', meta)
                 resolve(res);
 
             }).catch(err => {

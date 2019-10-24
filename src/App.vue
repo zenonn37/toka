@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <button @click="test()"></button>
-    <router-view />
+  <div class="main-content">
+    <div class="child-content">
+      <Header />
+      <router-view />
+    </div>
   </div>
 </template>
 <script>
+import Header from "@/components/Header";
 export default {
-  components: {},
+  components: {
+    Header
+  },
   methods: {
     test() {
       this.$store.dispatch("SET_LOCATION");
