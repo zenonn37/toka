@@ -54,3 +54,36 @@ header{
  
 
 }
+
+.sub-header{
+    background-color: rgb(37, 96, 173);
+   padding: .5rem 0;
+   .image-icon{
+       height: 40px;
+       width: 40px;
+       display: flex;
+       align-items: center;
+   }
+  .sub-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+    .sub-icons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .time{
+            padding: .5rem 0;
+            color: $white;
+        }
+        .small-temp{
+            color: $white;
+        }
+
+    }
+}

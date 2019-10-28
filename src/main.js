@@ -5,7 +5,7 @@ import store from './store/store'
 import VModal from 'vue-js-modal'
 import './plugins/vue-skycons'
 import './styles/main.css'
-
+import './plugins/vue-filter'
 import "./filters/filter";
 
 Vue.use(VModal);

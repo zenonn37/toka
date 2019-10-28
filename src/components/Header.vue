@@ -18,7 +18,7 @@
             </div>
             <div class="temp">{{current.temperature | numWHOLE}}</div>
           </div>
-
+          <div>{{current.time | unix}}</div>
           <div class="summary">{{current.summary}}</div>
         </div>
       </div>
@@ -64,38 +64,36 @@ export default {
       switch (icon) {
         case "clear-day":
           return "icon_clear_sky_day";
-          break;
+
         case "clear-night":
           return "icon_clear_sky_day";
-          break;
+
         case "partly-cloudy-day":
           return "few_clouds_day";
-          break;
+
         case "partly-cloudy-night":
           return "few_clouds_day";
-          break;
+
         case "cloudy":
           return "broken";
-          break;
+
         case "rain":
           return "rain";
-          break;
+
         case "sleet":
           return "icon_clear_sky_day";
-          break;
+
         case "snow":
           return "icon_snow";
-          break;
+
         case "wind":
           return "icon_clear_sky_day";
-          break;
+
         case "fog":
           return "icon_mist";
-          break;
 
         default:
           return "sun_rain";
-          break;
       }
     },
 

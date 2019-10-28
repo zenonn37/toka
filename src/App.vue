@@ -2,15 +2,23 @@
   <div class="main-content">
     <div class="child-content">
       <Header />
-      <router-view />
+    </div>
+
+    <SubHeader />
+    <div class="content">
+      <div class="container">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import Header from "@/components/Header";
+import SubHeader from "@/components/SubHeader";
 export default {
   components: {
-    Header
+    Header,
+    SubHeader
   },
   methods: {
     test() {
