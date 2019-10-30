@@ -24,8 +24,9 @@ export default {
     test() {
       this.$store.dispatch("SET_LOCATION");
     },
+    //callback sucess
     success(position) {
-      console.log(position.coords.latitude, position.coords.longitude);
+      //console.log(position.coords.latitude, position.coords.longitude);
 
       const geo = {
         lat: position.coords.latitude,
@@ -38,10 +39,13 @@ export default {
     }
   },
   created() {
+    //check if browswer allows location service
     if ("geolocation" in navigator) {
+      //get position and pass data to callback success function otherwise, pass
+      //errors to error callback function
       navigator.geolocation.getCurrentPosition(this.success, this.error);
-      //console.log(position.coords.latitude, position.coords.longitude);
     } else {
+      //as user to manually enter location, use reverse geocode api call on server
       console.log("oops enter your city manually!");
     }
   }

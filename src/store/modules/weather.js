@@ -8,6 +8,7 @@ const state = {
     minute: [],
     meta: {},
     city: {},
+    error: null
 
 
 }
@@ -25,6 +26,9 @@ const mutations = {
     },
     set_minute(state, payload) {
         state.minute = payload
+    },
+    set_error(state, payload) {
+        state.error = payload
     },
 
     set_city(state, payload) {
@@ -61,6 +65,9 @@ const getters = {
     },
     get_city(state) {
         return state.city
+    },
+    get_error(state) {
+        return state.error
     }
 
 }
@@ -72,27 +79,28 @@ const actions = {
             axios.post('http://apps.test/api/city', data)
                 .then(res => {
                     console.log(res.data);
-
+                    resolve(res)
                     const data = {
                         city: res.data[3].long_name,
                         state: res.data[6].short_name
                     }
-                    // const city = res.data[3].long_name
-                    // const state = res.data[5].long_name
+
                     commit('set_city', data)
                 }).catch(err => {
-
+                    reject(err)
                 })
         })
     },
-
+    //get location from darkskyapi no geocoding, until dispatch call to getcity
     SET_LOCATION({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
             axios.post('http://apps.test/api/geosky', location)
                 .then(res => {
+
+                    //geocode coords to get city info
                     dispatch('get_city', location)
-                    console.log(res.data.currently);
-                    console.log(res.data.daily);
+                    // console.log(res.data.currently);
+                    // console.log(res.data.daily);
                     commit('set_current', res.data.currently)
                     commit('set_daily', res.data.daily.data)
                     commit('set_hourly', res.data.hourly.data)
@@ -121,17 +129,19 @@ const actions = {
 
     },
 
-    get_current({ commit }, location) {
+    get_current({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
 
             axios.post('http://apps.test/api/dark', location
 
             ).then(res => {
+                // console.log(res.data.dark.daily.data);
 
-                commit('set_current', res.data.currently)
-                commit('set_daily', res.data.daily.data)
-                commit('set_hourly', res.data.hourly.data)
-                commit('set_minute', res.data.minutely.data)
+                commit('set_current', res.data.dark.currently)
+                commit('set_daily', res.data.dark.daily.data)
+                commit('set_hourly', res.data.dark.hourly.data)
+                commit('set_minute', res.data.dark.minutely.data)
+                //dispatch('get_city', location)
 
                 const meta = {
                     lat: res.data.latitude,
@@ -139,10 +149,18 @@ const actions = {
                     zone: res.data.timezone
                 }
                 commit('set_meta', meta)
+                console.log(res.data.address);
+
+                commit('set_city', res.data.address)
+                commit('set_error', null)
                 resolve(res);
 
             }).catch(err => {
-                console.log(err);
+
+                const not_found = "City not found please try again."
+
+                commit('set_error', not_found)
+                console.log(err.response);
                 reject(err);
 
             })

@@ -11,8 +11,8 @@
             <img width="40px" :src="`/images/${day.icon}.png`" :alt="`${day.icon}`" />
           </div>
           <div class="temp-range">
-            <div>{{day.apparentTemperatureMax}}</div>
-            <div>{{day.apparentTemperatureLow}}</div>
+            <div>{{day.apparentTemperatureMax | numWHOLE}}</div>
+            <div>{{day.apparentTemperatureLow | numWHOLE}}</div>
           </div>
         </div>
       </li>

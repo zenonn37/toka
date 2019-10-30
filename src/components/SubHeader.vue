@@ -6,7 +6,7 @@
         <div class="image-icon">
           <img width="30px" :src="`images/${hour.icon}.png`" :alt="`${hour.icon}`" />
         </div>
-        <div class="small-temp">65</div>
+        <div class="small-temp">{{hour.apparentTemperature | numWHOLE}}</div>
       </div>
     </div>
   </div>
