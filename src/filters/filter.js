@@ -21,5 +21,8 @@ Vue.filter('unix', function (value) {
     return moment.unix(value).format('h a')
 })
 Vue.filter('day_unix', function (value) {
-    return moment.unix(value).format('dddd')
+    return moment.unix(value).format('ddd')
+})
+Vue.filter('date_unix', function (value) {
+    return moment.unix(value).format('D MMM')
 })

@@ -1,15 +1,56 @@
-.hourly{
-
-
+.daily{
+ display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+ .daily-list{
+     flex:1;
+     padding: 1rem;
+ }
     .weather-list{
         display: flex;
-        justify-content: space-between;
-        h2{
-            margin: 0;
+      
+        padding-bottom: 1rem;
+        .small-icon{
+            width: 40px;
+            //margin-right: 1.5rem;
+            margin: .8rem 1.5rem 0 0 ;
         }
+       
         .weather-list-title{
+          text-align: left;
+          width: 200px;
+
+        }
+        .temp-range{
+            display: flex;
+            align-items: center;
+        }
+
+    }
+    .details{
+        h1{
+            text-align: center;
+            margin-top:.7rem;
+        }
+        flex:1;
+        padding: 1rem;
+        .daily-chart{
+            flex:1;
+            display: flex;
+            padding: 1rem;
+           
+            .avg-temps{
+                flex:1;
+                .degree{
+                    &::after{
+                        content:"\00B0";
+                    }
+                }
+               
+            }
           
         }
 
     }
+   
 }

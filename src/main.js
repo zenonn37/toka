@@ -2,13 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/store'
-import VModal from 'vue-js-modal'
-import './plugins/vue-skycons'
 import './styles/main.css'
 import './plugins/vue-filter'
 import "./filters/filter";
+import './plugins/trends'
 
-Vue.use(VModal);
+
 
 
 
