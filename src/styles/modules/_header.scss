@@ -1,13 +1,35 @@
 header{
     display: flex;
     flex:1;
-    background-color: rgb(153, 221, 238);  
-    height: 400px; 
+  
+    height: 500px; 
     nav{
         display: flex;
         justify-content: flex-end;
         margin-top:1rem;
+        .search-box{
+
+            height: 40px;
+            border-radius: 40px;
+            background: #2f3640;
+            padding: 10px;
+            flex:1
+        }
       
+    }
+    .loader_parent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        flex-direction: column;
+        .weather_loader{
+            margin-bottom: 30px;
+        }
+        .loader-text{
+            font-size: 20px;
+            color: blanchedalmond;
+        }
     }
      .weather{
          display: flex;

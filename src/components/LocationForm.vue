@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent="onSubmit()">
     <input type="text" v-model.trim="weather.city" placeholder="City" />
-    <input type="text" v-model="weather.state" placeholder="State" />
+    <!-- <input type="text" v-model="weather.state" placeholder="State" /> -->
     <span v-if="error !== null">{{error}}</span>
-    <button type="submit">Locations</button>
+    <!-- <button type="submit">Locations</button> -->
   </form>
 </template>
 

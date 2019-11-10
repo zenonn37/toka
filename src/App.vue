@@ -1,11 +1,13 @@
 <template>
   <div class="main-content">
     <div class="child-content">
+      <div></div>
+      <!-- <img src="/images/storm.jpg" alt /> -->
       <Header />
     </div>
 
     <SubHeader />
-    <div class="content">
+    <div class="content" :style="cssProps">
       <div class="container">
         <router-view />
       </div>
@@ -19,6 +21,13 @@ export default {
   components: {
     Header,
     SubHeader
+  },
+  data() {
+    return {
+      cssProps: {
+        backgroundImage: `url(${require("@/assets/storm.jpg")})`
+      }
+    };
   },
   methods: {
     test() {

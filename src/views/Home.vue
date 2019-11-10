@@ -109,7 +109,7 @@ export default {
         humid: numeral(dailyAvg(humid)).format("0%"),
         wind: numeral(dailyAvg(wind)).format(0.0) + " mph",
         gust: numeral(dailyAvg(gust)).format(0.0) + " mph",
-        vis: numeral(dailyAvg(vis)).format(0.0) + " mph",
+        vis: numeral(dailyAvg(vis)).format(0.0) + " miles ",
         dew: numeral(dailyAvg(dew)).format(0.0),
         cloud: numeral(dailyAvg(cloud)).format("0%")
       };
