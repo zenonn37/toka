@@ -1,10 +1,21 @@
 <template>
-  <form @submit.prevent="onSubmit()">
-    <input type="text" v-model.trim="weather.city" placeholder="City" />
-    <!-- <input type="text" v-model="weather.state" placeholder="State" /> -->
-    <span v-if="error !== null">{{error}}</span>
-    <!-- <button type="submit">Locations</button> -->
-  </form>
+  <div class="search-box">
+    <form @submit.prevent="onSubmit()">
+      <input
+        type="text"
+        class="search-text"
+        v-model.trim="weather.city"
+        placeholder="Enter Location"
+      />
+      <!-- <input type="text" v-model="weather.state" placeholder="State" /> -->
+
+      <!-- <button type="submit">Locations</button> -->
+    </form>
+    <!-- <input class="search-text" type="text" placeholder="Enter city" /> -->
+    <div class="search-btn">
+      <i class="fas fa-search"></i>
+    </div>
+  </div>
 </template>
 
 <script>

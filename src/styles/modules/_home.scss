@@ -3,7 +3,7 @@
 justify-content: space-between;
 flex-wrap: wrap;
  .daily-list{
-     flex:1;
+     flex:2;
      padding: 1rem;
  }
     .weather-list{
@@ -11,19 +11,43 @@ flex-wrap: wrap;
       
         padding-bottom: 1rem;
         .small-icon{
-            width: 40px;
-            //margin-right: 1.5rem;
-            margin: .8rem 1.5rem 0 0 ;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            // margin: .8rem 1.5rem 0 0 ;
         }
        
         .weather-list-title{
           text-align: left;
-          width: 200px;
+          max-width: 190px;
+        flex:1
 
+        }
+        .rain{
+            display: flex;
+            align-items: center;
+           text-align: left;
+           max-width: 190px;
+            flex:1;
+            div{
+                padding: 2px;
+            }
+          
+
+            
         }
         .temp-range{
             display: flex;
             align-items: center;
+             
+            div{
+                text-align: left;
+                &::after{
+                    content:"\00B0";
+                }
+            }
         }
 
     }
@@ -31,16 +55,21 @@ flex-wrap: wrap;
         h1{
             text-align: center;
             margin-top:.7rem;
+            display: flex;
+            justify-content: center;
         }
         flex:1;
         padding: 1rem;
         .daily-chart{
             flex:1;
             display: flex;
+            justify-content: center;
             padding: 1rem;
            
             .avg-temps{
                 flex:1;
+                text-align: center;
+                
                 .degree{
                     &::after{
                         content:"\00B0";
@@ -53,4 +82,38 @@ flex-wrap: wrap;
 
     }
    
+}
+
+@media screen and (max-width:1024px){
+    .daily{
+        display: flex;
+        flex-direction: column;
+        h2{
+            font-size:20px;
+        }
+        .daily-list{
+          
+            padding: 1rem 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            ul{
+                width: 100vw;
+            }
+
+            .weather-list{
+                display: flex;
+                justify-content: center;
+                padding-bottom: 1rem;
+                width: 100%;
+                .weather-list-title{
+                    max-width: 100px;
+                    div{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+     
+    }
 }

@@ -13,9 +13,18 @@
 
       <template v-else>
         <nav>
+          <!-- <LocationForm @location="getLocation" /> -->
           <div class="search-box">
-            <LocationForm @location="getLocation" />
-            <i class="fas fa-search"></i>
+            <input
+              class="search-text"
+              type="text"
+              v-model.trim="locations.city"
+              placeholder="Enter city"
+              @keydown.enter="onSend()"
+            />
+            <div class="search-btn" @click="onSend()">
+              <i class="fas fa-search"></i>
+            </div>
           </div>
         </nav>
 
@@ -51,6 +60,9 @@ export default {
   },
   data() {
     return {
+      locations: {
+        city: ""
+      },
       base: "",
       cssProps: {
         backgroundImage: `url(${require("@/assets/clouds.png")})`
@@ -59,6 +71,13 @@ export default {
   },
 
   methods: {
+    onSend() {
+      this.loading = true;
+
+      this.$store.dispatch("get_current", this.locations).then(() => {
+        this.loading = false;
+      });
+    },
     getLocation(value) {
       this.loading = true;
       console.log(value);

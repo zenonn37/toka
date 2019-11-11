@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const state = {
     current: null,
-    daily: [],
-    hourly: [],
-    minute: [],
+    daily: null,
+    hourly: null,
+    minute: null,
     meta: {},
     city: {},
     error: null

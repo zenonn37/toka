@@ -7,7 +7,7 @@
     </div>
 
     <SubHeader />
-    <div class="content" :style="cssProps">
+    <div class="content">
       <div class="container">
         <router-view />
       </div>
@@ -24,9 +24,9 @@ export default {
   },
   data() {
     return {
-      cssProps: {
-        backgroundImage: `url(${require("@/assets/storm.jpg")})`
-      }
+      // cssProps: {
+      //   backgroundImage: `url(${require("@/assets/storm.jpg")})`
+      // }
     };
   },
   methods: {

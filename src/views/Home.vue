@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="daily.length < 0">
+    <template v-if="daily === null">
       <div>Please wait...</div>
     </template>
 
@@ -8,6 +8,7 @@
       <div class="daily">
         <div class="daily-list">
           <ul>
+            <!--make component-->
             <li v-for="day in daily" :key="day.apparentTemperatureHighTime">
               <div class="weather-list">
                 <div class="small-icon">
@@ -16,6 +17,11 @@
                 <div class="weather-list-title">
                   <h2>{{day.apparentTemperatureHighTime | day_unix}}</h2>
                   <div>{{day.apparentTemperatureHighTime | date_unix}}</div>
+                </div>
+
+                <div class="rain">
+                  <div>Rain</div>
+                  <div>{{day.precipProbability | percent}}</div>
                 </div>
 
                 <div class="temp-range">
@@ -69,8 +75,8 @@ export default {
   computed: {
     daily() {
       if (
-        this.$store.getters.get_daily.length < 0 ||
-        this.$store.getters.get_daily.length === undefined
+        this.$store.getters.get_daily === null ||
+        this.$store.getters.get_daily === undefined
       ) {
         return [];
       } else {
