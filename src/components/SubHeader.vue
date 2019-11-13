@@ -16,7 +16,7 @@
           {{day.apparentTemperatureHigh}}. The low tonight will be {{day.apparentTemperatureLow}}
           <hr />
         </div>
-        <div>
+        <div class="">
           <Average
             :avg="day.precipProbability"
             :avg2="day.dewPoint"
