@@ -81,6 +81,7 @@ header{
                font-size: 30px;
                margin-bottom:1rem;
                font-weight: 700;
+               text-align: center;
             }
             .temp-icon{
                 display: flex;
@@ -117,6 +118,7 @@ header{
     background-color: rgb(19, 62, 119);
     transition: all 0.5s ease-in-out;
     height: 500px;
+    color: $white;
     &:hover{
         height: 500px;
 
@@ -145,8 +147,8 @@ header{
    .sub-forcast{
        text-align: center;
    }
-   .display
-   color: $white;
+   .display{
+    color: $white;
    }
   
     .sub-icons{
@@ -163,4 +165,5 @@ header{
         }
 
     }
+}
 }

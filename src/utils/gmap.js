@@ -1,8 +1,8 @@
 // src/utils/gmaps.js
-
+import { API_KEY } from '../env/api'
 // Your personal API key.
 // Get it here: https://console.cloud.google.com/google/maps-apis
-const API_KEY = 'AIzaSyAFDr4RPEnQkyhfYRCr37xe3hk10SdrN1M';
+const API_KEYS = API_KEY;
 const CALLBACK_NAME = 'gmapsCallback';
 
 let initialized = !!window.google;
@@ -33,7 +33,7 @@ export default function init() {
     const script = document.createElement('script');
     script.async = true;
     script.defer = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=${CALLBACK_NAME}`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEYS}&callback=${CALLBACK_NAME}`;
     script.onerror = rejectInitPromise;
     document.querySelector('head').appendChild(script);
 
