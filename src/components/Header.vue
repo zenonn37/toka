@@ -30,8 +30,7 @@
 
         <div class="weather">
           <div class="weather-header">
-            <div v-if="location !== undefined" class="city">{{location.city}}, {{ location.state}}</div>
-            <div v-else class="city">Loading City</div>
+            <div class="city">{{areas}}</div>
 
             <div class="temp-icon">
               <div class="weather-icon">
@@ -50,6 +49,7 @@
 
 <script>
 import moment from "moment";
+import gmapsInit from "@/utils/gmap";
 import LocationForm from "@/components/LocationForm";
 import { HalfCircleSpinner } from "epic-spinners";
 export default {
@@ -63,6 +63,7 @@ export default {
       locations: {
         city: ""
       },
+      area: "",
       base: "",
       cssProps: {
         backgroundImage: `url(${require("@/assets/clouds.png")})`
@@ -70,13 +71,64 @@ export default {
     };
   },
 
-  methods: {
-    onSend() {
-      this.loading = true;
+  async mounted() {
+    try {
+      const google = await gmapsInit();
+      const geocoder = new google.maps.Geocoder();
 
-      this.$store.dispatch("get_current", this.locations).then(() => {
-        this.loading = false;
+      geocoder.geocode({ address: "Greenwich NY" }, (results, status) => {
+        if (status !== "OK" || !results[0]) {
+          console.log(status);
+
+          throw new Error(status);
+        }
+        console.log(results[0].geometry.location.lat());
+        console.log(results[0].geometry.location.lng());
+
+        // map.setCenter(results[0].geometry.location);
+        // map.fitBounds(results[0].geometry.viewport);
       });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  methods: {
+    async onSend() {
+      this.loading = true;
+      try {
+        const google = await gmapsInit();
+        const geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode(
+          { address: this.locations.city },
+          (results, status) => {
+            if (status !== "OK" || !results[0]) {
+              console.log(status);
+
+              throw new Error(status);
+            }
+            console.log(results[0].geometry.location.lat());
+            console.log(results[0].geometry.location.lng());
+            console.log(results[0]);
+            this.area = results[0].formatted_address;
+            const loc = {
+              lat: results[0].geometry.location.lat(),
+              lng: results[0].geometry.location.lng()
+            };
+
+            this.$store.dispatch("get_current", loc).then(() => {
+              this.$store.dispatch("set_areas", results[0].formatted_address);
+              this.loading = false;
+            });
+
+            // map.setCenter(results[0].geometry.location);
+            // map.fitBounds(results[0].geometry.viewport);
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
     getLocation(value) {
       this.loading = true;
@@ -88,6 +140,15 @@ export default {
   },
 
   computed: {
+    areas() {
+      const area =
+        this.$store.getters.get_area !== null ||
+        this.$store.getters.get_area !== undefined
+          ? this.$store.getters.get_area
+          : "";
+
+      return area;
+    },
     location() {
       return this.$store.getters.get_city;
     },

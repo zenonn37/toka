@@ -1,4 +1,5 @@
 import axios from 'axios';
+import gmapsInit from "../../utils/gmap";
 
 
 const state = {
@@ -8,7 +9,9 @@ const state = {
     minute: null,
     meta: {},
     city: {},
-    error: null
+    error: null,
+    area: null
+
 
 
 }
@@ -33,6 +36,9 @@ const mutations = {
 
     set_city(state, payload) {
         state.city = payload
+    },
+    set_area(state, payload) {
+        state.area = payload
     },
 
 
@@ -68,6 +74,9 @@ const getters = {
     },
     get_error(state) {
         return state.error
+    },
+    get_area(state) {
+        return state.area
     }
 
 }
@@ -131,16 +140,20 @@ const actions = {
 
     get_current({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
+            console.log(location);
 
-            axios.post('http://apps.test/api/dark', location
+            axios.post('http://apps.test/api/darksky', {
+                lat: location.lat,
+                lng: location.lng
+            }
 
             ).then(res => {
                 // console.log(res.data.dark.daily.data);
 
-                commit('set_current', res.data.dark.currently)
-                commit('set_daily', res.data.dark.daily.data)
-                commit('set_hourly', res.data.dark.hourly.data)
-                commit('set_minute', res.data.dark.minutely.data)
+                commit('set_current', res.data.currently)
+                commit('set_daily', res.data.daily.data)
+                commit('set_hourly', res.data.hourly.data)
+                //commit('set_minute', res.data.minutely.data)
                 //dispatch('get_city', location)
 
                 const meta = {
@@ -164,6 +177,9 @@ const actions = {
                 reject(err);
 
             })
+
+
+
 
         });
     },
@@ -247,6 +263,12 @@ const actions = {
 
                 })
         })
+    },
+
+    set_areas({ commit }, data) {
+        console.log(data);
+
+        commit('set_area', data)
     }
 
 }
