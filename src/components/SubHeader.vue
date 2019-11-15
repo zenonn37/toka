@@ -5,7 +5,7 @@
         <div class="sub-icons" v-for="hour in limitBy(hourly,6)" :key="hour.time">
           <div class="time">{{hour.time | unix}}</div>
           <div class="image-icon">
-            <img width="30px" :src="`images/${hour.icon}.png`" :alt="`${hour.icon}`" />
+            <img :src="`images/${hour.icon}.png`" :alt="`${hour.icon}`" />
           </div>
           <div class="small-temp">{{hour.apparentTemperature | numWHOLE}}</div>
         </div>
@@ -16,14 +16,13 @@
           {{day.apparentTemperatureHigh}}. The low tonight will be {{day.apparentTemperatureLow}}
           <hr />
         </div>
-        <div class="">
+        <div>
           <Average
-            :avg="day.precipProbability"
-            :avg2="day.dewPoint"
+            :avg="weather.rain"
+            :avg2="weather.dew"
             :title="`Chance of ${day.precipType}`"
             title2="Dewpoint"
-            classes="subdetails"
-            meta="humid"
+            meta="true"
           />
           <Average
             :avg="day.humidity"
@@ -48,6 +47,7 @@
 <script>
 import Vue2Filters from "vue2-filters";
 import Average from "@/components/Average";
+import numeral from "numeral";
 //import { icon } from "@/mixins/icons";
 export default {
   name: "SubHeader",
@@ -63,6 +63,8 @@ export default {
       const weather = {
         hour: this.hourly,
         day: this.day,
+        rain: numeral(this.day.precipProbability).format("0%"),
+        dew: numeral(this.day.dewPoint).format(0.0),
         current: this.current !== null ? this.current : ""
       };
 
@@ -92,45 +94,6 @@ export default {
         return [];
       }
       return;
-    },
-    icons(icon) {
-      //const icon = this.hourly.icon;
-      console.log(icon);
-
-      switch (icon) {
-        case "clear-day":
-          return "icon_clear_sky_day";
-
-        case "clear-night":
-          return "icon_clear_sky_day";
-
-        case "partly-cloudy-day":
-          return "few_clouds_day";
-
-        case "partly-cloudy-night":
-          return "few_clouds_day";
-
-        case "cloudy":
-          return "broken";
-
-        case "rain":
-          return "rain";
-
-        case "sleet":
-          return "icon_clear_sky_day";
-
-        case "snow":
-          return "icon_snow";
-
-        case "wind":
-          return "icon_clear_sky_day";
-
-        case "fog":
-          return "icon_mist";
-
-        default:
-          return "sun_rain";
-      }
     }
   },
   methods: {}

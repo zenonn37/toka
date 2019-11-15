@@ -117,12 +117,12 @@ header{
 .sub-header{
     background-color: rgb(19, 62, 119);
     transition: all 0.5s ease-in-out;
-    height: 500px;
+    height: 400px;
     color: $white;
-    &:hover{
-        height: 500px;
+    // &:hover{
+    //     height: 500px;
 
-    }
+    // }
    
    padding: .5rem 0;
    .image-icon{
@@ -130,6 +130,7 @@ header{
        width: 40px;
        display: flex;
        align-items: center;
+       justify-content: center;
    }
   .sub-container{
   
@@ -141,9 +142,27 @@ header{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    .image-icon{
+        img{
+            width: 25px;
+        }
+        
+    }
+    .small-temp{
+        text-align: center;
+    }
   }
   .sub-details{
    margin-top:30px;
+   .daily-chart{
+       display: flex;
+       .avg-temps{
+           flex:1;
+           text-align: center;
+       }
+     
+    padding: 1rem;
+   }
    .sub-forcast{
        text-align: center;
    }
@@ -166,4 +185,70 @@ header{
 
     }
 }
+}
+
+@media screen and (max-width:500px){
+    .sub-header{
+      
+       
+       padding: .5rem 0;
+       .image-icon{
+           height: 30px;
+           width: 30px;
+           display: flex;
+           align-items: center;
+           img{
+            width: 30px;
+        }
+       }
+      .sub-container{
+      
+        max-width: 800px;
+        margin: 0 auto;
+        
+      }
+      .sub-hour{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        
+        .small-temp{
+            text-align: center;
+        }
+      }
+      .sub-details{
+       margin-top:30px;
+       .daily-chart{
+           display: flex;
+           .avg-temps{
+               flex:1;
+               text-align: center;
+           }
+         
+        padding: 1rem;
+       }
+       .sub-forcast{
+           padding: 0 1rem;
+       }
+       .display{
+        color: $white;
+       }
+      
+        .sub-icons{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .time{
+               
+                color: #000000;
+                font-size:12px;
+            }
+            .small-temp{
+                color: $white;
+            }
+    
+        }
+    }
+    }
 }
