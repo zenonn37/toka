@@ -104,7 +104,7 @@ export default {
           { address: this.locations.city },
           (results, status) => {
             if (status !== "OK" || !results[0]) {
-              console.log(status);
+              //console.log(status);
               this.$store.dispatch("set_errors", status);
               this.$toast.open({
                 message: "No Results Found",
@@ -114,9 +114,7 @@ export default {
               //throw new Error(status);
               return false;
             }
-            console.log(results[0].geometry.location.lat());
-            console.log(results[0].geometry.location.lng());
-            console.log(results[0]);
+
             this.area = results[0].formatted_address;
             const loc = {
               lat: results[0].geometry.location.lat(),
@@ -139,12 +137,17 @@ export default {
           }
         );
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        this.$toast.open({
+          message: "Internal Error, please refresh the page",
+          type: "error",
+          position: "top"
+        });
       }
     },
     getLocation(value) {
       this.loading = true;
-      console.log(value);
+      // console.log(value);
       this.$store.dispatch("get_current", value).then(() => {
         this.loading = false;
       });
