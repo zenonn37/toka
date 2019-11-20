@@ -6,6 +6,11 @@ import './styles/main.css'
 import './plugins/vue-filter'
 import "./filters/filter";
 import './plugins/trends'
+import './plugins/vee-validate'
+import './plugins/toast'
+
+
+
 
 
 

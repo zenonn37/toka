@@ -4,7 +4,12 @@ header{
   
     height: 500px; 
     nav{
-      
+       .errors{
+           position: absolute;
+           right:30px;
+           top:50px;
+           padding-top:.2rem;
+       }
         margin-top:1rem;
         position: relative;
         .search-box{
@@ -76,17 +81,27 @@ header{
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 300px;
+            min-width:300px;
             .city{
                font-size: 30px;
                margin-bottom:1rem;
                font-weight: 700;
                text-align: center;
             }
+            .header-hilo{
+                margin-top:.5rem;
+                > span{
+                    &::after{
+                        content:"\00B0";
+                      }
+                }
+           
+            }
             .temp-icon{
                 display: flex;
                 .temp{
                   font-size:60px;
+                  margin-left:.3rem;
                   font-weight: 300;
                   &::after{
                       content: "\2109";

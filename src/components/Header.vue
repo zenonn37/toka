@@ -14,18 +14,26 @@
       <template v-else>
         <nav>
           <!-- <LocationForm @location="getLocation" /> -->
-          <div class="search-box">
-            <input
-              class="search-text"
-              type="text"
-              v-model.trim="locations.city"
-              placeholder="Enter city"
-              @keydown.enter="onSend()"
-            />
-            <div class="search-btn" @click="onSend()">
-              <i class="fas fa-search"></i>
+          <ValidationProvider
+            name="Location"
+            rules="required|min:2|max:50|alpha_spaces"
+            v-slot="{errors}"
+          >
+            <div class="search-box">
+              <input
+                class="search-text"
+                type="text"
+                v-model.trim="locations.city"
+                placeholder="Enter Location"
+                @keydown.enter="onSend()"
+              />
+
+              <div class="search-btn" @click="onSend()">
+                <i class="fas fa-search"></i>
+              </div>
             </div>
-          </div>
+            <div class="errors">{{errors[0]}}</div>
+          </ValidationProvider>
         </nav>
 
         <div class="weather">
@@ -34,12 +42,16 @@
 
             <div class="temp-icon">
               <div class="weather-icon">
-                <img :src="`images/${icons}.png`" alt="few clouds" />
+                <img :src="`images/${current.icon}.png`" :alt="`${current.icon}`" />
               </div>
               <div class="temp">{{current.temperature | numWHOLE}}</div>
             </div>
             <div>{{current.time | unix}}</div>
             <div class="summary">{{current.summary}}</div>
+            <div class="header-hilo">
+              <span>{{days.apparentTemperatureHigh | numWHOLE}}</span> /
+              <span>{{days.apparentTemperatureLow | numWHOLE}}</span>
+            </div>
           </div>
         </div>
       </template>
@@ -52,6 +64,7 @@ import moment from "moment";
 import gmapsInit from "@/utils/gmap";
 import LocationForm from "@/components/LocationForm";
 import { HalfCircleSpinner } from "epic-spinners";
+
 export default {
   name: "Header",
   components: {
@@ -71,30 +84,16 @@ export default {
     };
   },
 
-  async mounted() {
-    try {
-      const google = await gmapsInit();
-      const geocoder = new google.maps.Geocoder();
-
-      geocoder.geocode({ address: "Greenwich NY" }, (results, status) => {
-        if (status !== "OK" || !results[0]) {
-          console.log(status);
-
-          throw new Error(status);
-        }
-        console.log(results[0].geometry.location.lat());
-        console.log(results[0].geometry.location.lng());
-
-        // map.setCenter(results[0].geometry.location);
-        // map.fitBounds(results[0].geometry.viewport);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   methods: {
     async onSend() {
+      if (this.locations.city === "" || this.locations.city.length < 2) {
+        this.$toast.open({
+          message: "Error, enter a location",
+          type: "error",
+          position: "top"
+        });
+        return false;
+      }
       this.loading = true;
       try {
         const google = await gmapsInit();
@@ -105,8 +104,14 @@ export default {
           (results, status) => {
             if (status !== "OK" || !results[0]) {
               console.log(status);
-
-              throw new Error(status);
+              this.$store.dispatch("set_errors", status);
+              this.$toast.open({
+                message: "No Results Found",
+                type: "warning",
+                position: "top"
+              });
+              //throw new Error(status);
+              return false;
             }
             console.log(results[0].geometry.location.lat());
             console.log(results[0].geometry.location.lng());
@@ -120,6 +125,12 @@ export default {
             this.$store.dispatch("get_current", loc).then(() => {
               this.$store.dispatch("set_areas", results[0].formatted_address);
               this.loading = false;
+
+              this.$toast.open({
+                message: "Location Updated",
+                type: "success",
+                position: "top"
+              });
             });
 
             // map.setCenter(results[0].geometry.location);
@@ -156,44 +167,26 @@ export default {
       return this.$store.getters.get_current;
       // return null;
     },
-    icons() {
-      const icon = this.current.icon;
-      console.log(icon);
+    days() {
+      const daily = this.$store.getters.get_daily;
 
-      switch (icon) {
-        case "clear-day":
-          return "icon_clear_sky_day";
-
-        case "clear-night":
-          return "icon_clear_sky_day";
-
-        case "partly-cloudy-day":
-          return "few_clouds_day";
-
-        case "partly-cloudy-night":
-          return "few_clouds_day";
-
-        case "cloudy":
-          return "broken";
-
-        case "rain":
-          return "rain";
-
-        case "sleet":
-          return "icon_clear_sky_day";
-
-        case "snow":
-          return "icon_snow";
-
-        case "wind":
-          return "icon_clear_sky_day";
-
-        case "fog":
-          return "icon_mist";
-
-        default:
-          return "sun_rain";
+      if (daily !== null || daily !== undefined) {
+        return daily[0];
+      } else {
+        return [];
       }
+      return;
+    },
+    hourly() {
+      const hour = this.$store.getters.get_hourly;
+
+      if (hour !== null) {
+        return hour;
+      } else {
+        return [];
+      }
+
+      return;
     },
 
     day() {

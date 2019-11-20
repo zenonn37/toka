@@ -83,6 +83,10 @@ const getters = {
 
 const actions = {
 
+    set_errors({ commit }, err) {
+        commit('set_error', err)
+    },
+
     get_city({ commit }, data) {
         return new Promise((resolve, reject) => {
             axios.post('http://apps.test/api/city', data)
