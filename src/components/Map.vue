@@ -106,7 +106,12 @@ export default {
 
       geocoder.geocode({ address: this.location }, (results, status) => {
         if (status !== "OK" || !results[0]) {
-          throw new Error(status);
+          // throw new Error(status);
+          this.$toast.open({
+            message: "Unable to Load Map",
+            type: "error",
+            position: "top"
+          });
         }
         // console.log(results[0].geometry.location.lat());
         // console.log(results[0].geometry.location.lng());
@@ -129,7 +134,7 @@ export default {
       });
     } catch (error) {
       this.$store.dispatch("set_errors", error);
-      console.error(error);
+      //console.error(error);
     }
   }
 };

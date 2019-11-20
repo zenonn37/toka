@@ -91,7 +91,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios.post('http://apps.test/api/city', data)
                 .then(res => {
-                    console.log(res.data);
+                    //console.log(res.data);
                     resolve(res)
                     const data = {
                         city: res.data[3].long_name,
@@ -100,6 +100,7 @@ const actions = {
 
                     commit('set_city', data)
                 }).catch(err => {
+                    commit('set_error', err.message)
                     reject(err)
                 })
         })
@@ -128,7 +129,8 @@ const actions = {
                     resolve(res)
 
                 }).catch(err => {
-                    console.log(err);
+                    //console.log(err);
+                    commit('set_error', err.message)
                     reject(err)
 
                 })
@@ -144,7 +146,7 @@ const actions = {
 
     get_current({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
-            console.log(location);
+            // console.log(location);
 
             axios.post('http://apps.test/api/darksky', {
                 lat: location.lat,
@@ -166,7 +168,7 @@ const actions = {
                     zone: res.data.timezone
                 }
                 commit('set_meta', meta)
-                console.log(res.data.address);
+                //console.log(res.data.address);
 
                 commit('set_city', res.data.address)
                 commit('set_error', null)
@@ -177,7 +179,7 @@ const actions = {
                 const not_found = "City not found please try again."
 
                 commit('set_error', not_found)
-                console.log(err.response);
+                // console.log(err.response);
                 reject(err);
 
             })
@@ -224,7 +226,8 @@ const actions = {
 
 
                 }).catch(err => {
-                    console.log(err);
+                    //console.log(err);
+                    commit('set_error', err.message)
                     reject(err)
 
                 })
@@ -243,7 +246,7 @@ const actions = {
                 }
             })
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     axios.get('http://apps.test/api/forecast', {
                         params: {
                             city: city
@@ -254,7 +257,8 @@ const actions = {
                         //resolve(res);
 
                     }).catch(err => {
-                        console.log(err);
+                        commit('set_error', err.message)
+                        //console.log(err);
                         // reject(err);
 
                     })
@@ -262,7 +266,8 @@ const actions = {
                     resolve(res);
                     commit("SET_DATA", res.data)
                 }).catch(err => {
-                    console.log(err);
+                    //console.log(err);
+                    commit('set_error', err.message)
                     reject(err)
 
                 })
@@ -270,7 +275,7 @@ const actions = {
     },
 
     set_areas({ commit }, data) {
-        console.log(data);
+        //console.log(data);
 
         commit('set_area', data)
     }

@@ -119,7 +119,7 @@ export default {
         dew: numeral(dailyAvg(dew)).format(0.0),
         cloud: numeral(dailyAvg(cloud)).format("0%")
       };
-      console.log(days);
+      //console.log(days);
       return days;
     }
   }
