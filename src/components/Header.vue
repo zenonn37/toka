@@ -46,7 +46,7 @@
               </div>
               <div class="temp">{{current.temperature | numWHOLE}}</div>
             </div>
-            <div>{{current.time | unix}}</div>
+            <div>{{current.time | day_hour}}</div>
             <div class="summary">{{current.summary}}</div>
             <div class="header-hilo">
               <span>{{days.apparentTemperatureHigh | numWHOLE}}</span> /
@@ -62,13 +62,14 @@
 <script>
 import moment from "moment";
 import gmapsInit from "@/utils/gmap";
+
 import LocationForm from "@/components/LocationForm";
 import { HalfCircleSpinner } from "epic-spinners";
 
 export default {
   name: "Header",
   components: {
-    LocationForm,
+    // LocationForm,
     HalfCircleSpinner
   },
   data() {
@@ -175,7 +176,6 @@ export default {
       } else {
         return [];
       }
-      return;
     },
     hourly() {
       const hour = this.$store.getters.get_hourly;
@@ -185,8 +185,6 @@ export default {
       } else {
         return [];
       }
-
-      return;
     },
 
     day() {

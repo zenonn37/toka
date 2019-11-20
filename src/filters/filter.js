@@ -29,3 +29,6 @@ Vue.filter('date_unix', function (value) {
 Vue.filter('percent', function (value) {
     return numeral(value).format("0%")
 })
+Vue.filter('day_hour', function (value) {
+    return moment.unix(value).format('MMM D, h a')
+})

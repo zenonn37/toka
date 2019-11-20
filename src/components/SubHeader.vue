@@ -16,28 +16,31 @@
           {{day.apparentTemperatureHigh}}. The low tonight will be {{day.apparentTemperatureLow}}
           <hr />
         </div>
-        <div>
-          <Average
-            :avg="weather.rain"
-            :avg2="weather.dew"
-            :title="`Chance of ${day.precipType}`"
-            title2="Dewpoint"
-            meta="true"
-          />
-          <Average
-            :avg="day.humidity"
-            :avg2="weather.current.windSpeed"
-            title="Humidity"
-            title2="Wind"
-            meta="humid"
-          />
-          <Average
-            :avg="weather.current.windGust"
-            :avg2="weather.current.visibility"
-            title="Wind Gust"
-            title2="Visibilty"
-            meta="humid"
-          />
+        <div class="sub-info">
+          <div class="sub-stats">
+            <Average
+              :avg="weather.rain"
+              :avg2="weather.dew"
+              :title="`Chance of ${day.precipType}`"
+              title2="Dewpoint"
+              meta="true"
+            />
+            <Average
+              :avg="day.humidity"
+              :avg2="weather.current.windSpeed"
+              title="Humidity"
+              title2="Wind"
+              meta="humid"
+            />
+            <Average
+              :avg="weather.current.windGust"
+              :avg2="weather.current.visibility"
+              title="Wind Gust"
+              title2="Visibilty"
+              meta="humid"
+            />
+          </div>
+          <Map class="maps" v-if="areas !== null" :location="areas" :key="componentKey" />
         </div>
       </div>
     </div>
@@ -48,15 +51,19 @@
 import Vue2Filters from "vue2-filters";
 import Average from "@/components/Average";
 import numeral from "numeral";
+import Map from "@/components/Map";
 //import { icon } from "@/mixins/icons";
 export default {
   name: "SubHeader",
   mixins: [Vue2Filters.mixin],
   components: {
-    Average
+    Average,
+    Map
   },
   data() {
-    return {};
+    return {
+      componentKey: 0
+    };
   },
   computed: {
     weather() {
@@ -94,9 +101,27 @@ export default {
         return [];
       }
       return;
+    },
+    areas() {
+      const area =
+        this.$store.getters.get_area !== null ||
+        this.$store.getters.get_area !== undefined
+          ? this.$store.getters.get_area
+          : null;
+
+      return area;
     }
   },
-  methods: {}
+  methods: {
+    updateMap() {
+      this.componentKey++;
+    }
+  },
+  watch: {
+    areas(value) {
+      this.updateMap();
+    }
+  }
 };
 </script>
 

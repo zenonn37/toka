@@ -75,13 +75,14 @@ header{
      .weather{
          display: flex;
          justify-content: center;
-         margin-top: 90px;
+         margin-top: 110px;
         .weather-header{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-width:300px;
+            max-width: 400px;
             .city{
                font-size: 30px;
                margin-bottom:1rem;
@@ -101,7 +102,7 @@ header{
                 display: flex;
                 .temp{
                   font-size:60px;
-                  margin-left:.3rem;
+                  margin-left:.5rem;
                   font-weight: 300;
                   &::after{
                       content: "\2109";
@@ -132,7 +133,7 @@ header{
 .sub-header{
     background-color: rgb(19, 62, 119);
     transition: all 0.5s ease-in-out;
-    height: 400px;
+    height: 100%;
     color: $white;
     // &:hover{
     //     height: 500px;
@@ -169,6 +170,15 @@ header{
   }
   .sub-details{
    margin-top:30px;
+   .sub-info{
+       display: flex;
+       justify-content: space-around;
+       flex-wrap: wrap;
+       .sub-stats{
+           display: flex;
+           flex-direction: column;
+       }
+   }
    .daily-chart{
        display: flex;
        .avg-temps{

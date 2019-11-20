@@ -108,7 +108,7 @@ header .weather {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 90px;
+  margin-top: 110px;
 }
 
 header .weather .weather-header {
@@ -126,6 +126,7 @@ header .weather .weather-header {
       -ms-flex-align: center;
           align-items: center;
   min-width: 300px;
+  max-width: 400px;
 }
 
 header .weather .weather-header .city {
@@ -151,7 +152,7 @@ header .weather .weather-header .temp-icon {
 
 header .weather .weather-header .temp-icon .temp {
   font-size: 60px;
-  margin-left: .3rem;
+  margin-left: .5rem;
   font-weight: 300;
 }
 
@@ -171,7 +172,7 @@ header .weather .weather-header .summary {
   background-color: #133e77;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  height: 400px;
+  height: 100%;
   color: #fff;
   padding: .5rem 0;
 }
@@ -216,6 +217,26 @@ header .weather .weather-header .summary {
 
 .sub-header .sub-details {
   margin-top: 30px;
+}
+
+.sub-header .sub-details .sub-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.sub-header .sub-details .sub-info .sub-stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .sub-header .sub-details .daily-chart {
@@ -366,6 +387,11 @@ html {
 
 h1, h2, h4, h5, h6 {
   margin: 0;
+}
+
+.Map {
+  width: 250px;
+  height: 250px;
 }
 
 .main-content {
