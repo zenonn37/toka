@@ -227,6 +227,7 @@ header .weather .weather-header .summary {
       justify-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .sub-header .sub-details .sub-info .sub-stats {
@@ -237,6 +238,7 @@ header .weather .weather-header .summary {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 250px;
 }
 
 .sub-header .sub-details .daily-chart {
@@ -291,8 +293,8 @@ header .weather .weather-header .summary {
     padding: .5rem 0;
   }
   .sub-header .image-icon {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -392,6 +394,10 @@ h1, h2, h4, h5, h6 {
 .Map {
   width: 250px;
   height: 250px;
+}
+
+.degree::after {
+  content: "\00B0";
 }
 
 .main-content {

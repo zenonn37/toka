@@ -21,20 +21,21 @@
             <Average
               :avg="weather.rain"
               :avg2="weather.dew"
-              :title="`Chance of ${day.precipType}`"
+              :title="day.precipType === undefined ?  'No Precipitation': ` Chance of ${day.precipType}`"
               title2="Dewpoint"
-              meta="true"
+              meta="false"
+              meta2="true"
             />
             <Average
-              :avg="day.humidity"
-              :avg2="weather.current.windSpeed"
+              :avg="weather.humidity"
+              :avg2="weather.wind"
               title="Humidity"
               title2="Wind"
               meta="humid"
             />
             <Average
-              :avg="weather.current.windGust"
-              :avg2="weather.current.visibility"
+              :avg="weather.gust"
+              :avg2="weather.vis"
               title="Wind Gust"
               title2="Visibilty"
               meta="humid"
@@ -72,6 +73,10 @@ export default {
         day: this.day,
         rain: numeral(this.day.precipProbability).format("0%"),
         dew: numeral(this.day.dewPoint).format(0.0),
+        humidity: numeral(this.day.humidity).format("0%"),
+        wind: numeral(this.day.windSpeed).format(0.0) + " mph",
+        gust: numeral(this.day.windGust).format(0.0) + " mph",
+        vis: numeral(this.day.visibility).format(0.0) + " m",
         current: this.current !== null ? this.current : ""
       };
 

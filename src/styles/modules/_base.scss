@@ -23,6 +23,12 @@ h1,h2,h4,h5,h6{
     height: 250px;
 }
 
+.degree{
+    &::after{
+        content:"\00B0";
+    }
+}
+
 .main-content{
     display: flex;
     flex-direction: column;

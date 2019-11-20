@@ -6,7 +6,7 @@
     </div>
     <div class="avg-temps">
       <h6>{{title2}}</h6>
-      <h2 :class="[meta === 'true'  ? 'degree' : 'empty']">{{avg2}}</h2>
+      <h2 :class="[meta2 === 'true'  ? 'degree' : 'empty']">{{avg2}}</h2>
     </div>
   </div>
 </template>
