@@ -79,6 +79,7 @@ export default {
       },
       area: "",
       base: "",
+
       cssProps: {
         backgroundImage: `url(${require("@/assets/clouds.png")})`
       }
@@ -192,6 +193,14 @@ export default {
 
     day() {
       return moment().format("dddd  Do,h:mm a");
+    },
+    test() {
+      let x = 7;
+      if (x > 6) {
+        return `url(${require("@/assets/storm.jpg")})`;
+      } else {
+        return `url(${require("@/assets/clouds.png")})`;
+      }
     }
   }
 };
