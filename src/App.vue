@@ -18,7 +18,7 @@
 import Header from "@/components/Header";
 import SubHeader from "@/components/SubHeader";
 import gmapsInit from "@/utils/gmap";
-import { async } from "q";
+
 export default {
   components: {
     Header,
@@ -84,6 +84,8 @@ export default {
     }
   },
   created() {
+    console.log(process.env.VUE_APP_GOOGLE);
+
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,

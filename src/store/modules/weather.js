@@ -1,6 +1,8 @@
 import axios from 'axios';
 import gmapsInit from "../../utils/gmap";
 
+const api = '45.56.115.129'
+
 
 const state = {
     current: null,
@@ -89,7 +91,7 @@ const actions = {
 
     get_city({ commit }, data) {
         return new Promise((resolve, reject) => {
-            axios.post('http://apps.test/api/city', data)
+            axios.post(`${process.env.VUE_APP_API}/api/city`, data)
                 .then(res => {
                     //console.log(res.data);
                     resolve(res)
@@ -108,7 +110,8 @@ const actions = {
     //get location from darkskyapi no geocoding, until dispatch call to getcity
     SET_LOCATION({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
-            axios.post('http://apps.test/api/geosky', location)
+            // axios.post('http://apps.test/api/geosky', location)
+            axios.post(`${process.env.VUE_APP_API}/api/geosky`, location)
                 .then(res => {
 
                     //geocode coords to get city info
@@ -147,8 +150,11 @@ const actions = {
     get_current({ commit, dispatch }, location) {
         return new Promise((resolve, reject) => {
             // console.log(location);
-
-            axios.post('http://apps.test/api/darksky', {
+            // axios.post('http://apps.test/api/geosky', {
+            //     lat: location.lat,
+            //     lng: location.lng
+            // }
+            axios.post(`${process.env.VUE_APP_API}/api/darksky`, {
                 lat: location.lat,
                 lng: location.lng
             }
@@ -191,48 +197,48 @@ const actions = {
     },
 
 
-    CURRENT_WEATHER({ commit }, city) {
-        //const city = "Glens Falls"
-        console.log(city);
+    // CURRENT_WEATHER({ commit }, city) {
+    //     //const city = "Glens Falls"
+    //     console.log(city);
 
 
-        return new Promise((resolve, reject) => {
-            axios.get('http://apps.test/api/daily', {
-                params: {
-                    city: city !== '' ? 'New York' : city
-                }
-            })
-                .then(res => {
-                    console.log(res.data);
-                    axios.get('http://apps.test/api/forecast', {
-                        params: {
-                            city: city !== '' ? 'New York' : city
-                        }
-                    }).then(res => {
+    //     return new Promise((resolve, reject) => {
+    //         axios.get('http://apps.test/api/daily', {
+    //             params: {
+    //                 city: city !== '' ? 'New York' : city
+    //             }
+    //         })
+    //             .then(res => {
+    //                 console.log(res.data);
+    //                 axios.get('http://apps.test/api/forecast', {
+    //                     params: {
+    //                         city: city !== '' ? 'New York' : city
+    //                     }
+    //                 }).then(res => {
 
-                        commit('SET_DAY', res.data)
-                        //resolve(res);
+    //                     commit('SET_DAY', res.data)
+    //                     //resolve(res);
 
-                    }).catch(err => {
-                        console.log(err);
-                        // reject(err);
+    //                 }).catch(err => {
+    //                     console.log(err);
+    //                     // reject(err);
 
-                    })
-                    setTimeout(() => {
-                        resolve(res);
-                    }, 1000);
+    //                 })
+    //                 setTimeout(() => {
+    //                     resolve(res);
+    //                 }, 1000);
 
-                    commit("SET_DATA", res.data)
+    //                 commit("SET_DATA", res.data)
 
 
-                }).catch(err => {
-                    //console.log(err);
-                    commit('set_error', err.message)
-                    reject(err)
+    //             }).catch(err => {
+    //                 //console.log(err);
+    //                 commit('set_error', err.message)
+    //                 reject(err)
 
-                })
-        })
-    },
+    //             })
+    //     })
+    // },
 
     GET_WEATHER({ commit }, city) {
         //const city = "Glens Falls"
