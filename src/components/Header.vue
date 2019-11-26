@@ -63,7 +63,7 @@
 import moment from "moment";
 import gmapsInit from "@/utils/gmap";
 
-import LocationForm from "@/components/LocationForm";
+//import LocationForm from "@/components/LocationForm";
 import { HalfCircleSpinner } from "epic-spinners";
 
 export default {
@@ -193,14 +193,6 @@ export default {
 
     day() {
       return moment().format("dddd  Do,h:mm a");
-    },
-    test() {
-      let x = 7;
-      if (x > 6) {
-        return `url(${require("@/assets/storm.jpg")})`;
-      } else {
-        return `url(${require("@/assets/clouds.png")})`;
-      }
     }
   }
 };

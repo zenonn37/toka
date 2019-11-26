@@ -1,7 +1,4 @@
-// src/utils/gmaps.js
 
-// Your personal API key.
-// Get it here: https://console.cloud.google.com/google/maps-apis
 const API_KEYS = process.env.VUE_APP_GOOGLE;
 const CALLBACK_NAME = 'gmapsCallback';
 

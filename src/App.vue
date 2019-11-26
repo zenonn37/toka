@@ -34,11 +34,10 @@ export default {
       try {
         const google = await gmapsInit();
         const geocoder = new google.maps.Geocoder();
-        const lat = geo.latitude;
-        const lng = geo.longitude;
+        // const lat = geo.latitude;
+        // const lng = geo.longitude;
         // console.log(geo);
 
-        const latlng = geo.lat + "," + geo.lng;
         // console.log(latlng);
 
         geocoder.geocode({ location: geo }, (results, status) => {
@@ -84,8 +83,6 @@ export default {
     }
   },
   created() {
-    console.log(process.env.VUE_APP_GOOGLE);
-
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
