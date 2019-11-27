@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="rain">
-                  <div>Rain</div>
+                  <div>{{day.precipType}}</div>
                   <div>{{day.precipProbability | percent}}</div>
                 </div>
 

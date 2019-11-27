@@ -31,8 +31,12 @@ flex-wrap: wrap;
            text-align: left;
            max-width: 190px;
             flex:1;
+            >:first-child{
+                text-transform: capitalize;
+            }
             div{
                 padding: 2px;
+
             }
           
 
