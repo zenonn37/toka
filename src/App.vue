@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="child-content">
       <div></div>
-      <!-- <img src="/images/storm.jpg" alt /> -->
+
       <Header />
     </div>
 
