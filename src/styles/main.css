@@ -20,6 +20,7 @@ header nav .errors {
   right: 30px;
   top: 50px;
   padding-top: .2rem;
+  color: #640e0e;
 }
 
 header nav .search-box {
@@ -59,7 +60,7 @@ header nav .search-box .search-text {
 
 header nav .search-box .search-btn {
   float: right;
-  color: #020824;
+  color: #899cf1;
   width: 30px;
   height: 30px;
   border-radius: 50%;

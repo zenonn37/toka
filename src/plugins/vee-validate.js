@@ -3,7 +3,10 @@ import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 
 import { required, email, min, max, alpha, numeric, alpha_spaces, regex } from "vee-validate/dist/rules";
 // Add the required rule
-extend("required", required);
+extend("required", {
+    ...required,
+    message: 'This field is required'
+});
 
 // Add the email rule
 extend("email", email);
