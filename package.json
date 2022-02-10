@@ -13,7 +13,7 @@
     "epic-spinners": "^1.1.0",
     "gsap": "^3.5.1",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "numeral": "^2.0.6",
     "vee-validate": "^3.3.9",
     "vue": "^2.6.12",
